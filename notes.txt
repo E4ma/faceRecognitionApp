@@ -2,4 +2,90 @@ bcrypt => to create secure login
 
 passwords stored in hashes
 
+//then Store hash in your password DB
+bcrypt.hash(password, null, null, function(err, hash){
+console.log(hash);
+});
 
+CONNECTING SERVER TO FE
+CORS: 
+-its a middleware
+-to tell google that server on localhost is secure
+- require CORS
+-app.use(cors())
+
+Click Sign/Register
+-info goes to server
+-server checks if correct
+
+Error LoadUser is not a function
+- because loadUser hadn't been parsed =>loadUser={loadUser}
+
+IN the /signin route: After the if statement:
+res.json(database.users[0]);
+instead of
+res.json("success"). 
+Q: What does this do?
+
+A: We are now returning a real user from our "mock" database.
+
+Q: Update the state in App.js to look like below and add the loadUser method:
+LoadUser= (data) => {
+    this.setState({user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        entries: data.entries,
+        joined: data.joined
+    }})
+}
+Once you have the above code added, how do you pass the loadUser to the Signin component as a prop and Then pass user.name and user.entries into the Rank component as props.
+
+
+A:
+
+Passing the loadUser method to Signin:
+
+             <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
+
+Rank with the states of the user:
+
+              <Rank name={this.state.user.name} entries={this.state.user.entries}/> 
+
+
+In Signin.js (frontend code):
+
+Q: Instead of checking if onSubmitSignIn was successful, check the response to see if user.id exists and call two functions if a user is returned from the backend: loadUser(user) and onRouteChange('home')
+
+A: In the onSubmitSignIn function:
+
+     .....
+    .then(response => response.json())
+      .then(user => {
+        if(user.id){ // does the user exist? Did we receive a user with a property of id?
+          this.props.loadUser(user);
+          this.props.onRouteChange('home');
+        }
+      })
+
+In Rank.js (frontend code):
+
+Q: Pass two props you need into the Rank component then display the message: "${name} , your current rank is...${entries}" :
+
+A:
+
+const Rank = ({ name, entries }) => {
+  return (
+    <div>
+      <div className='white f3'>
+        {`${name}, your current entry count is...`}
+      </div>
+      <div className='white f1'>
+        {entries}
+      </div>
+    </div>
+  );
+}
+
+
+   
