@@ -2,4 +2,18 @@ bcrypt => to create secure login
 
 passwords stored in hashes
 
+//then Store hash in your password DB
+bcrypt.hash(password, null, null, function(err, hash){
+console.log(hash);
+});
 
+CONNECTING SERVER TO FE
+CORS: 
+-its a middleware
+-to tell google that server on localhost is secure
+- require CORS
+-app.use(cors())
+
+Click Sign
+-info goes to server
+-server checks if correct
