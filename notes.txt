@@ -1,0 +1,5 @@
+bcrypt => to create secure login
+
+passwords stored in hashes
+
+
