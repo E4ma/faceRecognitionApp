@@ -87,5 +87,7 @@ const Rank = ({ name, entries }) => {
   );
 }
 
+PUT is to update things
+
 
    
