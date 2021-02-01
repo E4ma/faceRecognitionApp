@@ -90,7 +90,8 @@ const Rank = ({ name, entries }) => {
 PUT is to update things
 
 DATABASE 
-
+If server goes does db makes sure info is saved
+Knex.js is a SQL query builder to connect db
 
 
    

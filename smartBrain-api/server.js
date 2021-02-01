@@ -5,13 +5,13 @@ const cors = require('cors');
 const knex = require('knex')
 
 const db = knex({
-  // Enter your own database information here based on what you created
+  // connects server to database information 
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    user : 'aneagoie',
-    password : '',
-    database : 'smart-brain'
+    host : '127.0.0.1', //localhost
+    user : 'postgres',
+    password : '', //add postgres password to avoid error
+    database : 'smartBrain-db'
   }
 });
 
